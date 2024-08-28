@@ -1,9 +1,15 @@
 import { Box, Typography, Button } from "@mui/material";
 import FavoriteIcon from "@mui/icons-material/Favorite";
+import EmailIcon from "@mui/icons-material/Email";
+import MusicNoteIcon from "@mui/icons-material/MusicNote";
 
 export const ContactUs = () => {
   const handleEmailClick = () => {
     window.location.href = "mailto:noy@gmail.com";
+  };
+
+  const handleTikTokClick = () => {
+    window.location.href = "https://www.tiktok.com/@from_everyone"; // Replace with your TikTok account link
   };
 
   return (
@@ -35,15 +41,31 @@ export const ContactUs = () => {
       </Box>
 
       <Typography variant="h5" gutterBottom>
-        צריכים עזרה? מעוניינים ליצור שיתוף פעולה? אנחנו כאן תמיד בשבילך
+        !צריכים עזרה? מעוניינים ליצור שיתוף פעולה? אנחנו כאן תמיד בשבילך
       </Typography>
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleEmailClick}
-      >
-        שלח לנו אימייל
-      </Button>
+
+      <Typography variant="h5" gutterBottom>
+        אה ו... פרגן לנו בעוקב
+      </Typography>
+
+      <Box sx={{ display: "flex", gap: 2 }}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleEmailClick}
+          startIcon={<EmailIcon />}
+        >
+          שלח מייל
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleTikTokClick}
+          startIcon={<MusicNoteIcon />}
+        >
+          הטיקטוק שלנו
+        </Button>
+      </Box>
     </Box>
   );
 };
