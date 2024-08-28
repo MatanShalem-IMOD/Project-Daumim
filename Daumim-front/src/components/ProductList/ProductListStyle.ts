@@ -14,7 +14,7 @@ export const getClasses = (theme: Theme) => ({
   }),
   searchInput: css({
     flex: 1,
-    maxWidth: 800,
+    maxWidth: 750,
     marginRight: theme.spacing(2),
   }),
   dropdown: css({
