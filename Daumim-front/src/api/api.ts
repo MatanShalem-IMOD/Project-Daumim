@@ -1,4 +1,4 @@
-import { axiosInstance } from './axiosInstsance';
+import { axiosInstance } from "./axiosInstsance";
 
 const createProduct = async (product: Omit<Product | >) => {
     try {
