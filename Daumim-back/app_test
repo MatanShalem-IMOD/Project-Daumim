@@ -1,0 +1,48 @@
+from flask import Flask, jsonify
+from config import Config
+from models import db, Product, Category
+import json
+
+app = Flask(__name__)
+app.config.from_object(Config)
+
+@app.route('/get_data', methods=['GET'])
+def get_all_products():
+    try:
+        # Prepare the list of products with their details
+        product_list = []
+
+        # Add first product information to the list
+        product_info = {
+            "product_id": 1,
+            "product_name": "chair",
+            "category_name": "chairs",
+            "description": "4 legged chair",
+            "location_name": "herzliya",
+            "picture_url": "something.com",
+            "end_list_date": "30.04.2025"
+        }
+        product_list.append(product_info)
+
+        # Add second product information to the list
+        product_info = {
+            "product_id": 2,
+            "product_name": "table",
+            "category_name": "tables",
+            "description": "4 legged table",
+            "location_name": "rishon",
+            "picture_url": "somethingelse.com",
+            "end_list_date": "24.07.2025"
+        }
+        product_list.append(product_info)
+
+        # Return the list of products as JSON
+        return jsonify(product_list)
+
+    except Exception as e:
+        # Handle exceptions and return an error message
+        return jsonify({"error": str(e)}), 500
+
+if __name__ == '__main__':
+    # Start the Flask server
+    app.run(debug=True)
