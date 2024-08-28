@@ -1,15 +1,23 @@
-import './App.css'
-import {MainPage} from "./view/MainPage.tsx";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./context/themeContext";
+import { MainPage } from "./view/MainPage";
+import { AboutUs } from "./view/AboutUs";
+import { ContactUs } from "./view/ContactUs";
+import { MainAppBar } from "./components/MainAppBar";
 
 const App = () => {
   return (
-    <>
-      <ThemeProvider theme={theme}>
-          <MainPage/>
-      </ThemeProvider>
-    </>
+    <ThemeProvider theme={theme}>
+      <Router>
+        <MainAppBar />
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route path="/about-us" element={<AboutUs />} />
+          <Route path="/contact-us" element={<ContactUs />} />
+        </Routes>
+      </Router>
+    </ThemeProvider>
   );
 };
 
