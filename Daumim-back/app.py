@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS  # Import CORS
 from config import Config
 from models import db, Product, Category, Location
 import psycopg2
@@ -7,14 +8,15 @@ from datetime import datetime, timedelta
 
 app = Flask(__name__)
 
+CORS(app)
+
 # Load the configuration from config.py
 app.config.from_object(Config)
 
 # Initialize the database with the Flask app
 db.init_app(app)
 
-@app.before_first_request
-def create_tables():
+with app.app_context():
     db.create_all()
 
 def get_db_connection():
