@@ -23,4 +23,26 @@ const getProducts = async () => {
     }
 };
 
-export { createProduct, getProducts };
+const getLocations = async () => {
+    try {
+        const response = await axiosInstance.get("/locations");
+
+        return response.data;
+    } catch (error) {
+        console.error('Error getting locations:', error);
+        throw error;
+    }
+}
+
+const getCategories = async () => {
+  try {
+    const response = await axiosInstance.get("/categories");
+
+    return response.data;
+  } catch (error) {
+    console.error("Error getting categories:", error);
+    throw error;
+  }
+};
+
+export { createProduct, getProducts, getLocations, getCategories };
