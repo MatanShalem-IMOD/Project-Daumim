@@ -22,19 +22,8 @@ class Product(db.Model):
     category_id = db.Column(db.Integer, db.ForeignKey('category.category_id'))
     description = db.Column(db.String)
     location_id = db.Column(db.Integer, db.ForeignKey('location.location_id'))
-    picture = db.Column(db.String)  # URL to picture stored in Cosmos DB
+    picture = db.Column(db.String)  # URL to picture stored
     end_list_date = db.Column(db.DateTime)
     
     category = db.relationship("Category", backref="products")
     location = db.relationship("Location", backref="products")
-
-    def to_dict(self):
-        return {
-            "product_id": self.product_id,
-            "product_name": self.product_name,
-            "category_name": self.category.category_name,
-            "description": self.description,
-            "location_name": self.location.location_name,
-            "picture_url": self.picture,  # URL to fetch picture
-            "end_list_date": self.end_list_date
-        }
