@@ -1,10 +1,8 @@
-import { useTheme } from "@mui/material";
 import { ProductCard } from "./ProductCard/ProductCard";
 import { getClasses } from "./ProductListStyle";
 
 const ProductList = () => {
-  const theme = useTheme();
-  const classes = getClasses(theme);
+  const classes = getClasses();
 
   const products = [
     {
