@@ -1,4 +1,5 @@
-import React from 'react';
+// PhotoUploadButton.tsx
+import React, { useState } from 'react';
 
 interface PhotoUploadButtonProps {
     onFileSelected: (file: File | null) => void;
@@ -29,7 +30,6 @@ export const PhotoUploadButton: React.FC<PhotoUploadButtonProps> = ({ onFileSele
 
 const styles = {
     button: {
-
         display: 'inline-block',
         padding: '10px 20px',
         backgroundColor: '#bd9c75',
@@ -38,5 +38,10 @@ const styles = {
         borderRadius: '4px',
         cursor: 'pointer',
         textAlign: 'center',
-        fontFamily:'sans-serif'
-}};
+    },
+    preview: {
+        marginTop: '10px',
+        maxWidth: '100%',
+        height: 'auto',
+    },
+};
