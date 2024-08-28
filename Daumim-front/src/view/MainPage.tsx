@@ -6,12 +6,15 @@ import ProductList from "../components/ProductList/ProductList.tsx";
 
 export const MainPage = ()=> {
     return (
-    <MainDiv>
+    <>
         <MainAppBar/>
-            <FloatingActionButton />
+        <FloatingActionButton />
+        <AppContent>
             <ProductList/>
-    </MainDiv>)
+        </AppContent>
+    </>)
 }
 
-const MainDiv = styled.div`
+const AppContent = styled.div`
+    margin-top: 50px;
 `
