@@ -1,12 +1,15 @@
 from flask import Flask, jsonify
+from flask_cors import CORS
 from config import Config
 from models import db, Product, Category
 import json
 
 app = Flask(__name__)
+CORS(app)
+
 app.config.from_object(Config)
 
-@app.route('/get_data', methods=['GET'])
+@app.route('/products', methods=['GET'])
 def get_all_products():
     try:
         # Prepare the list of products with their details
@@ -14,25 +17,25 @@ def get_all_products():
 
         # Add first product information to the list
         product_info = {
-            "product_id": 1,
-            "product_name": "chair",
-            "category_name": "chairs",
+            "id": 1,
+            "name": "כיסא",
+            "catagory": "chairs",
             "description": "4 legged chair",
-            "location_name": "herzliya",
-            "picture_url": "something.com",
-            "end_list_date": "30.04.2025"
+            "location": "herzliya",
+            "picture": "something.com",
+            "date": "30.04.2025"
         }
         product_list.append(product_info)
 
         # Add second product information to the list
         product_info = {
-            "product_id": 2,
-            "product_name": "table",
-            "category_name": "tables",
-            "description": "4 legged table",
-            "location_name": "rishon",
-            "picture_url": "somethingelse.com",
-            "end_list_date": "24.07.2025"
+            "id": 2,
+            "name": "כיסא",
+            "catagory": "chairs",
+            "description": "4 legged chair",
+            "location": "herzliya",
+            "picture": "something.com",
+            "date": "30.04.2025"
         }
         product_list.append(product_info)
 
