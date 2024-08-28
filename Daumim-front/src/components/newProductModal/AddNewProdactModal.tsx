@@ -121,6 +121,9 @@ const SubmitButton = styled('button')`
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    height: 40px;
     width:101%;
     text-align: center;
+    font-size: large;
+
 `

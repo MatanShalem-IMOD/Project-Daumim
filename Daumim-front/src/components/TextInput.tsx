@@ -47,8 +47,13 @@ export const CustomTextField: React.FC<CustomTextFieldProps> = ({
                     height: height,
                     backgroundColor: 'white',
                     direction:'rtl'
+                }, inputProps: {
+                    style: {
+                        fontFamily: 'sans-serif', // Font family for the input text
+                    },
                 },
             }}
         />
+
     );
 };
