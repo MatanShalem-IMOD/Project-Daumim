@@ -3,7 +3,7 @@ import { axiosInstance } from "./AxiosInstsance";
 
 const createProduct = async (product: Omit<Product, "date">) => {
     try {
-        const response = await axiosInstance.post("/products", product);
+        const response = await axiosInstance.post("/product", product);
 
         return response.data;
     } catch (error) {
@@ -23,4 +23,26 @@ const getProducts = async () => {
     }
 };
 
-export { createProduct, getProducts };
+const getLocations = async () => {
+    try {
+        const response = await axiosInstance.get("/locations");
+
+        return response.data;
+    } catch (error) {
+        console.error('Error getting locations:', error);
+        throw error;
+    }
+}
+
+const getCategories = async () => {
+  try {
+    const response = await axiosInstance.get("/categories");
+
+    return response.data;
+  } catch (error) {
+    console.error("Error getting categories:", error);
+    throw error;
+  }
+};
+
+export { createProduct, getProducts, getLocations, getCategories };
