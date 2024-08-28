@@ -15,7 +15,7 @@ export const getClasses = (theme: Theme) => ({
     ":hover": {
       backgroundColor: "gray",
     },
-    flex: "0 0 24%", // for 4 items per row, adjust as needed
+    flex: "0 0 24%",
     margin: theme.spacing(1),
   }),
   image: css({
