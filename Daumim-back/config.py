@@ -6,7 +6,7 @@ class Config:
 
     # Default configuration for the local PostgreSQL database
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        'postgresql+psycopg2://postgres:Qazxsw2!q@localhost:5432/sample-db'
+        'postgresql+psycopg2://team3:Hashlama3@team3-pg.postgres.database.azure.com:5432/postgres'
 
 # Config settings for other environments can be defined similarly
 class DevelopmentConfig(Config):
@@ -19,4 +19,4 @@ class TestingConfig(Config):
 class ProductionConfig(Config):
     DEBUG = False
     SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or \
-        'postgresql+psycopg2://postgres:Qazxsw2!q@localhost:5432/sample-db'
+        'postgresql+psycopg2://team3:Hashlama3@team3-pg.postgres.database.azure.com:5432/postgres'
