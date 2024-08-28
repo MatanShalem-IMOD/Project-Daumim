@@ -3,7 +3,7 @@ import { axiosInstance } from "./AxiosInstsance";
 
 const createProduct = async (product: Omit<Product, "date">) => {
     try {
-        const response = await axiosInstance.post("/products", product);
+        const response = await axiosInstance.post("/product", product);
 
         return response.data;
     } catch (error) {

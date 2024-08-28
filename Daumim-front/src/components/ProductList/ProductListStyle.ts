@@ -6,4 +6,10 @@ export const getClasses = () => ({
     flexWrap: "wrap",
     justifyContent: "space-around",
   }),
+  center: css({
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    height: "100vh",
+  }),
 });
