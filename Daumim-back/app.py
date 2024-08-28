@@ -6,38 +6,35 @@ import os
 
 app = Flask(__name__)
 
-# Check if we're in a testing environment
-if os.environ.get('FLASK_ENV') == 'testing':
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///:memory:'  # Use in-memory SQLite for testing
-else:
-    app.config.from_object(Config)
+# Load the configuration from config.py
+app.config.from_object(Config)
 
+# Initialize the database with the Flask app
 db.init_app(app)
 
 @app.before_first_request
 def create_tables():
-    # Only create tables if not in testing mode
     db.create_all()
 
 def get_db_connection():
-    # Set up the PostgreSQL connection using psycopg2
+    # Establish a connection using psycopg2 with the values from config.py
     connection = psycopg2.connect(
-        dbname="your_db_name",
-        user="your_db_user",
-        password="your_db_password",
-        host="your_db_host",
-        port="your_db_port"
+        dbname="sample-db",         # Use the database name
+        user="postgres",        # Use your PostgreSQL username
+        password="Qazxsw2!q",  # Use your PostgreSQL password
+        host="localhost",           # Host is localhost for local DB
+        port="5432"                 # Default PostgreSQL port
     )
     return connection
 
 @app.route('/products', methods=['GET'])
 def get_all_products():
     try:
-        # Establish the connection to the PostgreSQL database
+        # Connect to the PostgreSQL database
         connection = get_db_connection()
         cursor = connection.cursor()
 
-        # SQL query to fetch product details along with category and location names
+        # Execute a SQL query to fetch data
         cursor.execute('''
             SELECT p.product_id, p.product_name, c.category_name, p.description, 
                    l.location_name, p.picture, p.end_list_date
@@ -47,31 +44,28 @@ def get_all_products():
         ''')
         products = cursor.fetchall()
 
-        # Close the cursor and connection
+        # Close cursor and connection
         cursor.close()
         connection.close()
 
-        # Prepare the list of products with their details
-        product_list = []
-        for product in products:
-            product_id, product_name, category_name, description, location_name, picture_url, end_list_date = product
-
-            # Add product information to the list
-            product_info = {
-                "product_id": product_id,
-                "product_name": product_name,
-                "category_name": category_name,
-                "description": description,
-                "location_name": location_name,
-                "picture_url": picture_url,  # Directly returning the picture URL
-                "end_list_date": end_list_date
+        # Process the results into JSON format
+        product_list = [
+            {
+                "product_id": product[0],
+                "product_name": product[1],
+                "category_name": product[2],
+                "description": product[3],
+                "location_name": product[4],
+                "picture_url": product[5],
+                "end_list_date": product[6]
             }
-            product_list.append(product_info)
+            for product in products
+        ]
 
         return jsonify(product_list)
 
     except Exception as e:
-        # Handle exceptions and return an error message
+        # Return an error message in case of exception
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
