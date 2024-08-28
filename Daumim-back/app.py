@@ -52,8 +52,8 @@ def get_all_cities():
         # Process the results into JSON format
         location_list = [
             {
-                "location_id": location[0],
-                "location_name": location[1],
+                "id": location[0],
+                "name": location[1],
             }
             for location in locations
         ]
@@ -85,8 +85,8 @@ def get_all_categories():
         # Process the results into JSON format
         category_list = [
             {
-                "category_id": category[0],
-                "category_name": category[1],
+                "id": category[0],
+                "name": category[1],
             }
             for category in categories
         ]
@@ -159,11 +159,11 @@ def get_all_products():
         # Execute a SQL query to fetch product details, including the encoded image text
         cursor.execute('''
             SELECT p.product_id, p.product_name, c.category_name, p.description, 
-                   l.location_name, pics.encoded_picture, p.date_of_publication
+             l.location_name, pics.encoded_picture, p.date_of_publication
             FROM doum_schema.products p
-            JOIN doum_schema.categories c ON p.category_id = c.category_id
-            JOIN doum_schema.locations l ON p.location_id = l.location_id
-            JOIN doum_schema.pictures pics ON p.picture_id = pics.picture_id
+        LEFT JOIN doum_schema.categories c ON p.category_id = c.category_id
+        LEFT JOIN doum_schema.locations l ON p.location_id = l.location_id
+        LEFT JOIN doum_schema.pictures pics ON p.picture_id = pics.picture_id;
         ''')
         products = cursor.fetchall()
 
@@ -174,13 +174,13 @@ def get_all_products():
         # Process the results into JSON format
         product_list = [
             {
-                "product_id": product[0],
-                "product_name": product[1],
-                "category_name": product[2],
+                "id": product[0],
+                "name": product[1],
+                "category": product[2],
                 "description": product[3],
-                "location_name": product[4],
-                "encoded_picture": product[5],
-                "date_of_publication": product[6]
+                "location": product[4],
+                "picture": product[5],
+                "date": product[6]
             }
             for product in products
         ]
@@ -196,11 +196,11 @@ def add_product():
     try:
         # Get the data per category
         data = request.get_json()
-        product_name = data.get('product_name')
-        category_name = data.get('category_name')
+        product_name = data.get('name')
+        category_name = data.get('category')
         description = data.get('description')
-        location_name = data.get('location_name')
-        encoded_picture = data.get('encoded_picture')  # Assume this is provided as input
+        location_name = data.get('location')
+        encoded_picture = data.get('picture')  # Assume this is provided as input
         date_of_publication = datetime.now().date()
 
         # Get category ID based on category name
