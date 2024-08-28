@@ -4,6 +4,7 @@ import { useProducts } from "../../hooks/hooks";
 import { Product } from "../../types/Product";
 import { Typography, Box } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
+import MoodBadIcon from "@mui/icons-material/MoodBad";
 
 const ProductList = () => {
   const classes = getClasses();
@@ -37,9 +38,7 @@ const ProductList = () => {
         <Typography variant="h5" gutterBottom>
           ...משהו לא עבד
         </Typography>
-        <Typography variant="body1">
-          !נסה שוב בעוד כמה דקות
-        </Typography>
+        <Typography variant="body1">!נסה שוב בעוד כמה דקות</Typography>
       </Box>
     );
   } else {
