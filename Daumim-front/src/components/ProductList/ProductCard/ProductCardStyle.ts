@@ -3,35 +3,22 @@ import { css } from "@emotion/css";
 
 export const getClasses = (theme: Theme) => ({
   card: css({
-    display: "flex",
-    flexDirection: "row-reverse",
     alignItems: "center",
     padding: "10px",
     border: "1px solid #ccc",
     borderRadius: "5px",
     marginBottom: "10px",
     direction: "rtl",
-    width: "90%",
+    maxWidth: "345",
     cursor: "pointer",
     justifyContent: "center",
     ":hover": {
       backgroundColor: "gray",
     },
   }),
-  leftSide: css({
-    flex: "0 0 70%",
-    textAlign: "center",
-    marginRight: "12px",
-    height: "100%",
-    display: "flex",
-  }),
-  rightSide: css({
-    flex: "0 0 30%",
-    paddingLeft: "10px",
-  }),
-  icon: css({
-    flex: "0 0 30%",
-    textAlign: "center",
+  image: css({
+    maxHeight: "140px",
+    maxWidth: "300px",
   }),
   details: css({
     flex: "0 0 70%",
@@ -44,9 +31,6 @@ export const getClasses = (theme: Theme) => ({
   cardTitle: css({
     fontWeight: "bold",
     fontSize: "12px",
-  }),
-  subtitle: css({
-    color: theme.palette.primary.main,
-    fontSize: "12px",
+    color: theme.palette.primary.dark,
   }),
 });
