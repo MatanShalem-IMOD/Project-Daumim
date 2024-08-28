@@ -1,29 +1,27 @@
-import { Fab } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
-// import styled from 'styled-components';
+import styled from 'styled-components';
 
-// const StyledFab = styled(Fab)`
-//   position: absolute;
-// `;
-
-const fabStyle = {
-    position: 'absolute',
-
-};
+import {theme} from '../../../context/themeContext';
+// Create a theme
 
 export const FloatingActionButton = () => {
     return (
-            <Fab color="primary" aria-label="add" style={fabStyle}>
+           <WrappingButton theme={theme}>
                 <AddIcon/>
-            </Fab>
-    );
+           </WrappingButton>)
 };
 
-// import { Theme } from "@mui/material";
-// import { css } from "@emotion/css";
-//
-// export const getClasses = (theme: Theme) => ({
-//     Fab: css({
-//         position: 'absolute',
-//     }),
-// });
+
+
+const WrappingButton = styled.button`
+    position: absolute;
+    border-radius: 100%;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    right: 40px;
+    bottom: 20px;
+    background-color: ${({ theme }) => theme.palette.primary.main};
+`;
