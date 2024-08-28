@@ -23,13 +23,8 @@ export const ProductCard = ({
       <CardMedia
         className={classes.image}
         component="img"
-<<<<<<< HEAD
-        image={picture}
-        title="product picture"
-=======
         src={imageUrl}
         title={name}
->>>>>>> 5fed6a28a995224d0e303f0c4790699caac07cf5
       />
       <CardContent>
         <Typography

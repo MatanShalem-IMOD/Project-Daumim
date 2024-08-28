@@ -1,22 +1,20 @@
 import styled from "styled-components";
+import {useState} from "react";
 import {MainAppBar} from "../components/MainAppBar.tsx";
 import {FloatingActionButton} from "../components/buttons/AddFloatingButton/AddFloatingButton.tsx";
 import ProductList from "../components/ProductList/ProductList.tsx";
-import {useState} from "react";
-import {AddNewProductModal} from "../components/newProductModal/AddNewProdactModal.tsx";
+import { AddNewProductModal } from "../components/newProductModal/AddNewProdactModal.tsx";
 
 export const MainPage = ()=> {
-    const [isOpen, setOpen] = useState(false);
-    const handleOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
+    const [isOpen, setIsOpen] = useState<boolean>(false);
 
     return (
     <>
         <MainAppBar/>
-        <FloatingActionButton handleOpen={handleOpen} />
+        <FloatingActionButton handleOpen={()=>setIsOpen(true)} />
         <AppContent>
             <ProductList/>
-            <AddNewProductModal isOpen={isOpen} handleClose={handleClose}/>
+            <AddNewProductModal isOpen={isOpen} handleClose={()=>setIsOpen(false)} />
         </AppContent>
     </>)
 }
