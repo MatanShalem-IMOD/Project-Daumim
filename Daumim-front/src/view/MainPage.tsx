@@ -1,20 +1,18 @@
 import styled from "styled-components";
-import {MainAppBar} from "../components/MainAppBar.tsx";
-import {FloatingActionButton} from "../components/buttons/AddFloatingButton/AddFloatingButton.tsx";
-import ProductList from "../components/ProductList/ProductList.tsx";
+import { FloatingActionButton } from "../components/buttons/AddFloatingButton/AddFloatingButton";
+import ProductList from "../components/ProductList/ProductList";
 
-
-export const MainPage = ()=> {
-    return (
+export const MainPage = () => {
+  return (
     <>
-        <MainAppBar/>
-        <FloatingActionButton />
-        <AppContent>
-            <ProductList/>
-        </AppContent>
-    </>)
-}
+      <FloatingActionButton />
+      <AppContent>
+        <ProductList />
+      </AppContent>
+    </>
+  );
+};
 
 const AppContent = styled.div`
-    margin-top: 50px;
-`
+  margin-top: 50px;
+`;

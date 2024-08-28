@@ -2,7 +2,7 @@ import { ProductCard } from "./ProductCard/ProductCard";
 import { getClasses } from "./ProductListStyle";
 import { useProducts } from "../../hooks/hooks";
 import { Product } from "../../types/Product";
-import Alert from "@mui/material/Alert";
+import { Typography, Box } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
 
 const ProductList = () => {
@@ -19,11 +19,28 @@ const ProductList = () => {
 
   if (error) {
     return (
-      <div className={classes.center}>
-        <Alert severity="error">
-          אופס! לא הצלחנו לטעון את המוצרים, נסה שוב בעוד כמה דקות
-        </Alert>
-      </div>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          height: "100vh",
+          textAlign: "center",
+          backgroundColor: "#f5f5f5",
+          padding: 2,
+        }}
+      >
+        <Typography variant="h3" gutterBottom>
+          אופס סליחה
+        </Typography>
+        <Typography variant="h5" gutterBottom>
+          ...משהו לא עבד
+        </Typography>
+        <Typography variant="body1">
+          !נסה שוב בעוד כמה דקות
+        </Typography>
+      </Box>
     );
   } else {
     return (
