@@ -4,7 +4,6 @@ import { useProducts } from "../../hooks/hooks";
 import { Product } from "../../types/Product";
 import { Typography, Box } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
-import MoodBadIcon from "@mui/icons-material/MoodBad";
 
 const ProductList = () => {
   const classes = getClasses();
