@@ -20,7 +20,12 @@
     "axios": "^1.7.5",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+<<<<<<< HEAD
     "react-select": "^5.8.0",
+=======
+    "react-query": "^3.39.3",
+    "react-router-dom": "^6.26.1",
+>>>>>>> 302d22a208611da84ba60a32122dbe85d9da4ad2
     "styled-components": "^6.1.12"
   },
   "devDependencies": {
