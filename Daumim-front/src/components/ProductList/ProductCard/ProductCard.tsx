@@ -8,7 +8,7 @@ import { useTheme } from "@mui/material";
 
 export const ProductCard = ({
   name,
-  catagory,
+  category,
   description,
   location,
   picture,
@@ -31,7 +31,7 @@ export const ProductCard = ({
           variant="h5"
           component="div"
         >
-          {name}, {catagory}, {location}
+          {name}, {category}, {location}
         </Typography>
         <Typography className={classes.details}>{description}</Typography>
       </CardContent>
