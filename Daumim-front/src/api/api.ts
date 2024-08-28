@@ -1,8 +1,9 @@
-import { axiosInstance } from "./axiosInstsance";
+import { Product } from "../types/Product";
+import { axiosInstance } from "./AxiosInstsance";
 
-const createProduct = async (product: Omit<Product | >) => {
+const createProduct = async (product: Omit<Product, "date">) => {
     try {
-        const response = await axiosInstance.post("/products", productData);
+        const response = await axiosInstance.post("/products", product);
 
         return response.data;
     } catch (error) {
