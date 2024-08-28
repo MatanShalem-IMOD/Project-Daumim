@@ -16,14 +16,15 @@ export const ProductCard = ({
 }: Product) => {
   const theme = useTheme();
   const classes = getClasses(theme);
+  const imageUrl = `data:image/png;base64,${picture}`;
 
   return (
     <Card className={classes.card}>
       <CardMedia
         className={classes.image}
         component="img"
-        src={picture}
-        title="product picture"
+        src={imageUrl}
+        title={name}
       />
       <CardContent>
         <Typography

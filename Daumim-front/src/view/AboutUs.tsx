@@ -1,6 +1,5 @@
 import { Box, Typography } from "@mui/material";
 import styled from "styled-components";
-// import Image from "../assets/about-us-image.png"; // Update the path to your image
 
 export const AboutUs = () => {
   return (
@@ -8,7 +7,7 @@ export const AboutUs = () => {
       <Content>
         <TextSection>
           <Typography variant="h4" gutterBottom>
-            תמיד רציתם לתרום לקהילה ולהשתתף במאמץ המלחמתי?
+            ?תמיד רציתם לתרום לקהילה ולהשתתף במאמץ המלחמתי
           </Typography>
           <Typography variant="body1" paragraph>
             באתר זה, תוכלו לתרום ולמסור רהיטים, פרטים לבית, בגדים ועוד לחיילים
@@ -21,9 +20,9 @@ export const AboutUs = () => {
             חיים חדשים לפריטים שלכם, כך תשמרו על הסביבה ותתרמו לקהילה.
           </Typography>
         </TextSection>
-        {/* <ImageSection>
-          <img src={Image} alt="About Us" />
-        </ImageSection> */}
+        <ImageSection>
+          <img src="../../src/assets/logo.png" alt="About Us" />
+        </ImageSection>
       </Content>
     </Container>
   );
