@@ -2,7 +2,6 @@ import AddIcon from '@mui/icons-material/Add';
 import styled from 'styled-components';
 
 import {theme} from '../../../context/themeContext';
-// Create a theme
 
 export const FloatingActionButton = () => {
     return (

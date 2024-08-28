@@ -1,6 +1,5 @@
 import './App.css'
 import {MainPage} from "./view/MainPage.tsx";
-
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./context/themeContext";
 
