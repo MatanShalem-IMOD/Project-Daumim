@@ -1,5 +1,10 @@
 import { useQuery } from "react-query";
-import { createProduct, getProducts } from "../api/api";
+import {
+  createProduct,
+  getLocations,
+  getProducts,
+  getCategories,
+} from "../api/api";
 import { Product } from "../types/Product";
 
 export const useProducts = () => {
@@ -8,4 +13,12 @@ export const useProducts = () => {
 
 export const useAddProduct = (product: Omit<Product, "date">) => {
   return useQuery("addProducts", () => createProduct(product));
+};
+
+export const useLocations = () => {
+  return useQuery("locations", getLocations);
+};
+
+export const useCategories = () => {
+  return useQuery("categories", getCategories);
 };

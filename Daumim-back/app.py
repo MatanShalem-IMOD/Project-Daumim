@@ -5,6 +5,7 @@ from models import db, Product, Category, Location
 import psycopg2
 import os
 from datetime import datetime, timedelta
+import re
 
 app = Flask(__name__)
 
@@ -191,6 +192,18 @@ def get_all_products():
         # Return an error message in case of exception
         return jsonify({"error": str(e)}), 500
 
+def is_alphanumeric_hebrew(string):
+    """Check if a given string is alphanumeric, including Hebrew characters and spaces."""
+    return bool(re.match('^[a-zA-Z0-9א-ת\s]+$', string))
+
+def is_alphanumeric_hebrew_with_punctuation(string):
+    """Check if a given string is alphanumeric, including Hebrew characters, spaces, and common punctuation."""
+    return bool(re.match('^[a-zA-Z0-9א-ת\s\-\:\,\.]+$', string))
+
+def is_base64(string):
+    """Check if a given string is valid base64."""
+    return bool(re.match('^[A-Za-z0-9+/=]+$', string))
+
 @app.route('/product', methods=['POST'])
 def add_product():
     try:
@@ -203,6 +216,19 @@ def add_product():
         encoded_picture = data.get('picture')  # Assume this is provided as input
         date_of_publication = datetime.now().date()
 
+        if not (is_alphanumeric_hebrew(product_name) and
+                is_alphanumeric_hebrew(category_name) and
+                is_alphanumeric_hebrew(location_name)):
+            return jsonify({"error": "Product name, category, and location must be alphanumeric or Hebrew."}), 400
+
+        # Validate description to allow punctuation
+        if not is_alphanumeric_hebrew_with_punctuation(description):
+            return jsonify({"error": "Description must be alphanumeric, Hebrew, or contain allowed punctuation."}), 400
+
+        # Validate input for encoded picture (base64)
+        if not is_base64(encoded_picture):
+            return jsonify({"error": "Encoded picture must be valid base64."}), 400
+        
         # Get category ID based on category name
         category_id = get_category_id(category_name)
         if category_id is None:
