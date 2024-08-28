@@ -2,8 +2,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { ThemeProvider } from "@mui/material";
 import { theme } from "./context/themeContext";
 import { MainPage } from "./view/MainPage";
-import { AboutUs } from "./view/AboutUs";
 import { ContactUs } from "./view/ContactUs";
+import { AboutUs } from "./view/AboutUs";
 import { MainAppBar } from "./components/MainAppBar";
 
 const App = () => {
