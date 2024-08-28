@@ -20,18 +20,86 @@ def create_tables():
 def get_db_connection():
     # Establish a connection using psycopg2 with the values from config.py
     connection = psycopg2.connect(
-        dbname="sample-db",         # Use the database name
-        user="postgres",        # Use your PostgreSQL username
-        password="Qazxsw2!q",  # Use your PostgreSQL password
-        host="localhost",           # Host is localhost for local DB
-        port="5432"                 # Default PostgreSQL port
+        dbname="postgres",         # Use the database name
+        user="team3",              # Use your PostgreSQL username
+        password="Hashlama3",      # Use your PostgreSQL password
+        host="team3-pg.postgres.database.azure.com",  # Azure PostgreSQL host
+        port="5432",               # Default PostgreSQL port
+        sslmode="require"          # Enforce SSL connection
     )
+    connection.set_client_encoding('UTF8')
     return connection
+
+@app.route('/locations', methods=['GET'])
+def get_all_cities():
+    try:
+        # Connect to the PostgreSQL database
+        connection = get_db_connection()
+        cursor = connection.cursor()
+
+        # Execute a SQL query to fetch product details, including the encoded image text
+        cursor.execute('''
+            SELECT * FROM doum_schema.locations 
+        ''')
+        locations = cursor.fetchall()
+
+        # Close cursor and connection
+        cursor.close()
+        connection.close()
+
+        # Process the results into JSON format
+        location_list = [
+            {
+                "location_id": location[0],
+                "location_name": location[1],
+            }
+            for location in locations
+        ]
+        
+        return jsonify(location_list)
+
+    except Exception as e:
+        # Return an error message in case of exception
+        return jsonify({"error": str(e)}), 500
+
+
+@app.route('/categories', methods=['GET'])
+def get_all_categories():
+    try:
+        # Connect to the PostgreSQL database
+        connection = get_db_connection()
+        cursor = connection.cursor()
+
+        # Execute a SQL query to fetch product details, including the encoded image text
+        cursor.execute('''
+            SELECT * FROM doum_schema.categories 
+        ''')
+        categories = cursor.fetchall()
+
+        # Close cursor and connection
+        cursor.close()
+        connection.close()
+
+        # Process the results into JSON format
+        category_list = [
+            {
+                "category_id": category[0],
+                "category_name": category[1],
+            }
+            for category in categories
+        ]
+    
+        return jsonify(category_list)
+
+    except Exception as e:
+        # Return an error message in case of exception
+        return jsonify({"error": str(e)}), 500
+
 
 def get_category_id(category_name):
     connection = get_db_connection()
     cursor = connection.cursor()
-    cursor.execute('SELECT category_id FROM category WHERE category_name = %s', (category_name,))
+    cursor.execute('SELECT category_id FROM doum_schema.categories WHERE category_name = %s', (category_name,))
     result = cursor.fetchone()
     cursor.close()
     connection.close()
@@ -40,7 +108,7 @@ def get_category_id(category_name):
 def get_location_id(location_name):
     connection = get_db_connection()
     cursor = connection.cursor()
-    cursor.execute('SELECT location_id FROM location WHERE location_name = %s', (location_name,))
+    cursor.execute('SELECT location_id FROM doum_schema.locations WHERE location_name = %s', (location_name,))
     result = cursor.fetchone()
     cursor.close()
     connection.close()
@@ -60,7 +128,7 @@ def delete_old_products():
 
         # SQL query to delete products older than one month
         delete_query = '''
-            DELETE FROM product
+            DELETE FROM doum_schema.products
             WHERE date_of_publication < %s
         '''
         cursor.execute(delete_query, (one_month_ago,))
@@ -86,13 +154,14 @@ def get_all_products():
         connection = get_db_connection()
         cursor = connection.cursor()
 
-        # Execute a SQL query to fetch data
+        # Execute a SQL query to fetch product details, including the encoded image text
         cursor.execute('''
             SELECT p.product_id, p.product_name, c.category_name, p.description, 
-                   l.location_name, p.picture, p.date_of_publication
-            FROM product p
-            JOIN category c ON p.category_id = c.category_id
-            JOIN location l ON p.location_id = l.location_id
+                   l.location_name, pics.encoded_picture, p.date_of_publication
+            FROM doum_schema.products p
+            JOIN doum_schema.categories c ON p.category_id = c.category_id
+            JOIN doum_schema.locations l ON p.location_id = l.location_id
+            JOIN doum_schema.pictures pics ON p.picture_id = pics.picture_id
         ''')
         products = cursor.fetchall()
 
@@ -108,7 +177,7 @@ def get_all_products():
                 "category_name": product[2],
                 "description": product[3],
                 "location_name": product[4],
-                "picture_url": product[5],
+                "encoded_picture": product[5],
                 "date_of_publication": product[6]
             }
             for product in products
@@ -120,19 +189,19 @@ def get_all_products():
         # Return an error message in case of exception
         return jsonify({"error": str(e)}), 500
 
-@app.route('/products',methods = ['POST'])
+@app.route('/product', methods=['POST'])
 def add_product():
     try:
-        # Get the data per category 
+        # Get the data per category
         data = request.get_json()
         product_name = data.get('product_name')
         category_name = data.get('category_name')
         description = data.get('description')
         location_name = data.get('location_name')
-        picture_url = data.get('picture_url')
+        encoded_picture = data.get('encoded_picture')  # Assume this is provided as input
         date_of_publication = datetime.now().date()
 
-         # Get category ID based on category name
+        # Get category ID based on category name
         category_id = get_category_id(category_name)
         if category_id is None:
             return jsonify({"error": f"Category '{category_name}' not found"}), 400
@@ -146,13 +215,22 @@ def add_product():
         connection = get_db_connection()
         cursor = connection.cursor()
 
+        # Insert the encoded picture first to get the picture ID
+        insert_picture_query = '''
+            INSERT INTO doum_schema.pictures (encoded_picture)
+            VALUES (%s)
+            RETURNING picture_id
+        '''
+        cursor.execute(insert_picture_query, (encoded_picture,))
+        picture_id = cursor.fetchone()[0]
+
         # SQL query to insert a new product
-        insert_query = '''
-            INSERT INTO product (product_name, category_id, description, location_id, picture, date_of_publication)
+        insert_product_query = '''
+            INSERT INTO doum_schema.products (product_name, category_id, description, location_id, picture_id, date_of_publication)
             VALUES (%s, %s, %s, %s, %s, %s)
             RETURNING product_id
         '''
-        cursor.execute(insert_query, (product_name, category_id, description, location_id, picture_url, date_of_publication))
+        cursor.execute(insert_product_query, (product_name, category_id, description, location_id, picture_id, date_of_publication))
         product_id = cursor.fetchone()[0]
 
         # Commit the transaction
