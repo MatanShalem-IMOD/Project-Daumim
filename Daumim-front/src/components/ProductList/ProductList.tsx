@@ -11,7 +11,7 @@ const ProductList = () => {
       catagory: "חמשל",
       description: "גרכחעימגקלחדמכלךדכךדגל",
       location: "ראשון לציון",
-      picture: "/assets/phone.jpg",
+      picture: "https://www.pelephone.co.il/ds/uploadedimages/09_2022/iphone_14_pro_max_space_black.png",
       date: "2020",
     },
     {
@@ -20,7 +20,7 @@ const ProductList = () => {
       catagory: "חמשל",
       description: "גרכחעימגקלחדמכלךדכךדגל",
       location: "ראשון לציון",
-      picture: "/assets/phone.jpg",
+      picture: "https://www.pelephone.co.il/ds/uploadedimages/09_2022/iphone_14_pro_max_space_black.png",
       date: "2020",
     },
     {
@@ -29,7 +29,7 @@ const ProductList = () => {
       catagory: "חמשל",
       description: "גרכחעימגקלחדמכלךדכךדגל",
       location: "ראשון לציון",
-      picture: "/assets/phone.jpg",
+      picture: "https://www.pelephone.co.il/ds/uploadedimages/09_2022/iphone_14_pro_max_space_black.png",
       date: "2020",
     },
     {
@@ -38,7 +38,7 @@ const ProductList = () => {
       catagory: "חמשל",
       description: "גרכחעימגקלחדמכלךדכךדגל",
       location: "ראשון לציון",
-      picture: "/assets/phone.jpg",
+      picture: "https://www.pelephone.co.il/ds/uploadedimages/09_2022/iphone_14_pro_max_space_black.png",
       date: "2020",
     },
     {
@@ -47,7 +47,7 @@ const ProductList = () => {
       catagory: "חמשל",
       description: "גרכחעימגקלחדמכלךדכךדגל",
       location: "ראשון לציון",
-      picture: "/assets/phone.jpg",
+      picture: "https://www.pelephone.co.il/ds/uploadedimages/09_2022/iphone_14_pro_max_space_black.png",
       date: "2020",
     },
     {
@@ -56,7 +56,7 @@ const ProductList = () => {
       catagory: "חמשל",
       description: "גרכחעימגקלחדמכלךדכךדגל",
       location: "ראשון לציון",
-      picture: "/assets/phone.jpg",
+      picture: "https://www.pelephone.co.il/ds/uploadedimages/09_2022/iphone_14_pro_max_space_black.png",
       date: "2020",
     },
     {
@@ -65,7 +65,7 @@ const ProductList = () => {
       catagory: "חמשל",
       description: "גרכחעימגקלחדמכלךדכךדגל",
       location: "ראשון לציון",
-      picture: "/assets/phone.jpg",
+      picture: "https://www.pelephone.co.il/ds/uploadedimages/09_2022/iphone_14_pro_max_space_black.png",
       date: "2020",
     },
     {
@@ -74,7 +74,7 @@ const ProductList = () => {
       catagory: "חמשל",
       description: "גרכחעימגקלחדמכלךדכךדגל",
       location: "ראשון לציון",
-      picture: "/assets/phone.jpg",
+      picture: "https://www.pelephone.co.il/ds/uploadedimages/09_2022/iphone_14_pro_max_space_black.png",
       date: "2020",
     },
     {
@@ -83,7 +83,7 @@ const ProductList = () => {
       catagory: "חמשל",
       description: "גרכחעימגקלחדמכלךדכךדגל",
       location: "ראשון לציון",
-      picture: "/assets/phone.jpg",
+      picture: "https://www.pelephone.co.il/ds/uploadedimages/09_2022/iphone_14_pro_max_space_black.png",
       date: "2020",
     },
     {
@@ -92,7 +92,7 @@ const ProductList = () => {
       catagory: "חמשל",
       description: "גרכחעימגקלחדמכלךדכךדגל",
       location: "ראשון לציון",
-      picture: "/assets/phone.jpg",
+      picture: "https://www.pelephone.co.il/ds/uploadedimages/09_2022/iphone_14_pro_max_space_black.png",
       date: "2020",
     },
     {
@@ -101,7 +101,7 @@ const ProductList = () => {
       catagory: "חמשל",
       description: "גרכחעימגקלחדמכלךדכךדגל",
       location: "ראשון לציון",
-      picture: "/assets/phone.jpg",
+      picture: "https://www.pelephone.co.il/ds/uploadedimages/09_2022/iphone_14_pro_max_space_black.png",
       date: "2020",
     },
     {
@@ -110,7 +110,7 @@ const ProductList = () => {
       catagory: "חמשל",
       description: "גרכחעימגקלחדמכלךדכךדגל",
       location: "ראשון לציון",
-      picture: "/assets/phone.jpg",
+      picture: "https://www.pelephone.co.il/ds/uploadedimages/09_2022/iphone_14_pro_max_space_black.png",
       date: "2020",
     },
     {
@@ -119,7 +119,7 @@ const ProductList = () => {
       catagory: "חמשל",
       description: "גרכחעימגקלחדמכלךדכךדגל",
       location: "ראשון לציון",
-      picture: "/assets/phone.jpg",
+      picture: "https://www.pelephone.co.il/ds/uploadedimages/09_2022/iphone_14_pro_max_space_black.png",
       date: "2020",
     },
     {
@@ -128,7 +128,7 @@ const ProductList = () => {
       catagory: "חמשל",
       description: "גרכחעימגקלחדמכלךדכךדגל",
       location: "ראשון לציון",
-      picture: "/assets/phone.jpg",
+      picture: "https://www.pelephone.co.il/ds/uploadedimages/09_2022/iphone_14_pro_max_space_black.png",
       date: "2020",
     },
     {
@@ -137,7 +137,7 @@ const ProductList = () => {
       catagory: "חמשל",
       description: "גרכחעימגקלחדמכלךדכךדגל",
       location: "ראשון לציון",
-      picture: "/assets/phone.jpg",
+      picture: "https://www.pelephone.co.il/ds/uploadedimages/09_2022/iphone_14_pro_max_space_black.png",
       date: "2020",
     },
     {
@@ -146,7 +146,7 @@ const ProductList = () => {
       catagory: "חמשל",
       description: "גרכחעימגקלחדמכלךדכךדגל",
       location: "ראשון לציון",
-      picture: "/assets/phone.jpg",
+      picture: "https://www.pelephone.co.il/ds/uploadedimages/09_2022/iphone_14_pro_max_space_black.png",
       date: "2020",
     },
     {
@@ -155,7 +155,7 @@ const ProductList = () => {
       catagory: "חמשל",
       description: "גרכחעימגקלחדמכלךדכךדגל",
       location: "ראשון לציון",
-      picture: "/assets/phone.jpg",
+      picture: "https://www.pelephone.co.il/ds/uploadedimages/09_2022/iphone_14_pro_max_space_black.png",
       date: "2020",
     },
     {
@@ -164,7 +164,7 @@ const ProductList = () => {
       catagory: "חמשל",
       description: "גרכחעימגקלחדמכלךדכךדגל",
       location: "ראשון לציון",
-      picture: "/assets/phone.jpg",
+      picture: "https://www.pelephone.co.il/ds/uploadedimages/09_2022/iphone_14_pro_max_space_black.png",
       date: "2020",
     },
     {
@@ -173,7 +173,7 @@ const ProductList = () => {
       catagory: "חמשל",
       description: "המוצר ממש שווה תקחו אותי",
       location: "ראשון לציון",
-      picture: "/assets/phone.jpg",
+      picture: "https://www.pelephone.co.il/ds/uploadedimages/09_2022/iphone_14_pro_max_space_black.png",
       date: "2020",
     },
     {
@@ -182,7 +182,7 @@ const ProductList = () => {
       catagory: "חמשל",
       description: "גרכחעימגקלחדמכלךדכךדגל",
       location: "ראשון לציון",
-      picture: "/assets/phone.jpg",
+      picture: "https://www.pelephone.co.il/ds/uploadedimages/09_2022/iphone_14_pro_max_space_black.png",
       date: "2020",
     },
     {
@@ -191,7 +191,7 @@ const ProductList = () => {
       catagory: "חמשל",
       description: "גרכחעימגקלחדמכלךדכךדגל",
       location: "ראשון לציון",
-      picture: "/assets/phone.jpg",
+      picture: "https://www.pelephone.co.il/ds/uploadedimages/09_2022/iphone_14_pro_max_space_black.png",
       date: "2020",
     },
   ];

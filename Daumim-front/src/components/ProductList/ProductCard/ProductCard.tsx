@@ -21,7 +21,7 @@ export const ProductCard = ({
       <CardMedia
         className={classes.image}
         component="img"
-        src={picture}
+        image={picture}
         title="product picture"
       />
       <CardContent>
