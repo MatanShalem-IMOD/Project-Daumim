@@ -7,6 +7,9 @@ import { PhotoUploadButton } from "../buttons/FileUploadButton.tsx";
 import { MultyLineTextField } from "../ProductList/MultyLineTextInput.tsx";
 import { useLocations } from "../../hooks/hooks.ts";
 import { useCategories } from "../../hooks/hooks.ts";
+import {transformList} from "./NewProducModalUtils.ts";
+import {ProductDataToDB} from "../../types/Product.ts";
+import {AddProduct} from "../../api/api.ts";
 
 interface Props {
   isOpen: boolean;
@@ -40,23 +43,44 @@ left: 50%;
     const [productCategory, setProductCategory] = useState<string>("");
     const [cityName, setCityName] = useState<string>("");
     const [phoneNumber, setPhoneNumber] = useState<string>("");
-      const [photo, setPhoto] = useState<File>();
+    const [photo, setPhoto] = useState<File>();
       
-      const { data: locations } = useLocations();
-      const { data: categories } = useCategories();
-    
-    function printFields() {
-    console.log(productCategory);
-    console.log(productName);
-    console.log(productDescription);
-    console.log(phoneNumber);
-    console.log(cityName);
-    console.log(photo);
+    const { data: locations } = useLocations();
+    const { data: categories } = useCategories();
 
-    handleClose();
+    function encodePhotoToBase64(file: File, callback: (base64String: string) => void) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+            const base64String = reader.result as string;
+            callback(base64String);
+        };
+        reader.readAsDataURL(file);
     }
+
+      function printFields() {
+          if (!photo) {
+              console.error('No photo selected');
+              return;
+          }
+
+          encodePhotoToBase64(photo, (encodedBase64Photo) => {
+              console.log(encodedBase64Photo)
+
+              const product: ProductDataToDB = {
+                  name: productName,
+                  category: productCategory,
+                  description: `${productDescription} ${phoneNumber}`,
+                  location: cityName,
+                  picture: encodedBase64Photo.split(',')[1] // Base64 string for the photo
+              };
+
+              // Now you can use the product object to make your POST request
+              AddProduct(product).then(r =>console.log(r));
+              // Call your function to send the data
+              handleClose()
+          });
+      }
     
-    console.log("noy" + locations);
 
   return (
     <Modal
@@ -71,7 +95,7 @@ left: 50%;
           <DropdownSearch
             onInputChange={(s) => setProductCategory(s)}
             name={"Category"}
-            options={categories || []}
+            options={transformList(categories) || []}
             placeHolder={"בחר קטגוריה"}
           />
           <CustomTextField
@@ -98,7 +122,7 @@ left: 50%;
           <DropdownSearch
             onInputChange={(city) => setCityName(city)}
             name={"productName"}
-            options={locations || []}
+            options={transformList(locations) || []}
             placeHolder={"בחר מיקום"}
           />
         </ProductContactInfoDiv>

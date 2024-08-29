@@ -1,7 +1,7 @@
 import Select from 'react-select';
 
 interface DropdownProps {
-    options: { id: number, name: string }[]; // Update options to include both value and label
+    options: { value: string, label: string }[]; // Update options to include both value and label
     onInputChange: (input: string) => void;
     name: string;
     height?: number;
@@ -25,6 +25,10 @@ export const DropdownSearch = ({ options, onInputChange, name,height=30, width=2
             ...provided,
             margin: 0, // Optional: adjust single value margin
         }),
+        option: (provided: any) => ({
+            ...provided,
+            fontSize:14// Height of each option item
+        }),
         placeholder: (provided: any) => ({
             ...provided,
             margin: 0, // Optional: adjust placeholder margin
@@ -44,7 +48,7 @@ export const DropdownSearch = ({ options, onInputChange, name,height=30, width=2
             onChange={(selectedOption) => {
                 // Handle selection change
                 if (selectedOption) {
-                    onInputChange(selectedOption.name);
+                    onInputChange(selectedOption.value);
                 }
             }}
             styles={customStyles}

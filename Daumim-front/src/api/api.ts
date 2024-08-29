@@ -1,4 +1,4 @@
-import { Product } from "../types/Product";
+import {Product, ProductDataToDB} from "../types/Product";
 import { axiosInstance } from "./AxiosInstsance";
 
 const createProduct = async (product: Omit<Product, "date">) => {
@@ -19,6 +19,17 @@ const getProducts = async () => {
         return response.data;
     } catch (error) {
         console.error('Error getting products:', error);
+        throw error;
+    }
+};
+
+
+export const AddProduct = async (productData: ProductDataToDB) => {
+    try {
+        const response = await axiosInstance.post("/product", productData);
+        console.log('Product added successfully:', response.data);
+    } catch (error) {
+        console.error('Error adding product:', error);
         throw error;
     }
 };

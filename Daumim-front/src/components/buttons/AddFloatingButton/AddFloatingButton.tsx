@@ -17,10 +17,11 @@ export const FloatingActionButton = ({handleOpen}:props) => {
 const WrappingButton = styled.button`
     position: fixed;
     border-radius: 100%;
-    width: 6rem;
-    height: 6rem;
+    width: 5em;
+    height: 5em;
     display: flex;
     align-items: center;
+    cursor: pointer;
     justify-content: center;
     right: 40px;
     bottom: 20px;
