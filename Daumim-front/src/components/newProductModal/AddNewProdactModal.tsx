@@ -6,6 +6,7 @@ import { CustomTextField } from "../TextInput.tsx";
 import { PhotoUploadButton } from "../buttons/FileUploadButton.tsx";
 import { MultyLineTextField } from "../ProductList/MultyLineTextInput.tsx";
 import { useLocations } from "../../hooks/hooks.ts";
+import { useCategories } from "../../hooks/hooks.ts";
 
 interface Props {
   isOpen: boolean;
@@ -39,8 +40,10 @@ left: 50%;
     const [productCategory, setProductCategory] = useState<string>("");
     const [cityName, setCityName] = useState<string>("");
     const [phoneNumber, setPhoneNumber] = useState<string>("");
-    const [photo, setPhoto] = useState<File>();
-    const { data: locations } = useLocations();
+      const [photo, setPhoto] = useState<File>();
+      
+      const { data: locations } = useLocations();
+      const { data: categories } = useCategories();
     
     function printFields() {
     console.log(productCategory);
@@ -68,7 +71,7 @@ left: 50%;
           <DropdownSearch
             onInputChange={(s) => setProductCategory(s)}
             name={"Category"}
-            options={locations || []}
+            options={categories || []}
             placeHolder={"בחר קטגוריה"}
           />
           <CustomTextField
@@ -96,7 +99,7 @@ left: 50%;
             onInputChange={(city) => setCityName(city)}
             name={"productName"}
             options={locations || []}
-            placeHolder={"בחר עיר"}
+            placeHolder={"בחר מיקום"}
           />
         </ProductContactInfoDiv>
         <SubmitButton onClick={printFields}>הוסף</SubmitButton>
