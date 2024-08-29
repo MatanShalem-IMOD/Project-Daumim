@@ -11,6 +11,7 @@ export const getClasses = (theme: Theme) => ({
     borderRadius: "8px",
     boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
     marginBottom: theme.spacing(2),
+    gap:"5px"
   }),
   searchInput: css({
     flex: 1,
@@ -26,6 +27,7 @@ export const getClasses = (theme: Theme) => ({
   productList: css({
     display: "flex",
     flexWrap: "wrap",
+    justifyContent: "space-around",
     gap: theme.spacing(2),
   }),
   center: css({
