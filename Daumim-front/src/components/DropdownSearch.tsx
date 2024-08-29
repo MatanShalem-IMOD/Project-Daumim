@@ -1,7 +1,7 @@
 import Select from 'react-select';
 
 interface DropdownProps {
-    options: { value: string, label: string }[]; // Update options to include both value and label
+    options: { id: number, name: string }[]; // Update options to include both value and label
     onInputChange: (input: string) => void;
     name: string;
     height?: number;
@@ -10,10 +10,7 @@ interface DropdownProps {
 }
 
 
-
 export const DropdownSearch = ({ options, onInputChange, name,height=30, width=200, placeHolder }: DropdownProps) => {
-
-
     const customStyles = {
         control: (provided: any) => ({
             ...provided,
@@ -47,7 +44,7 @@ export const DropdownSearch = ({ options, onInputChange, name,height=30, width=2
             onChange={(selectedOption) => {
                 // Handle selection change
                 if (selectedOption) {
-                    onInputChange(selectedOption.value);
+                    onInputChange(selectedOption.name);
                 }
             }}
             styles={customStyles}
