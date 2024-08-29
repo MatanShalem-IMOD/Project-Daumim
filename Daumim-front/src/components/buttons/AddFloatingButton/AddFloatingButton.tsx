@@ -2,10 +2,13 @@ import AddIcon from '@mui/icons-material/Add';
 import styled from 'styled-components';
 
 import {theme} from '../../../context/themeContext';
+interface props{
+    handleOpen: () => void,
+}
 
-export const FloatingActionButton = () => {
+export const FloatingActionButton = ({handleOpen}:props) => {
     return (
-           <WrappingButton theme={theme}>
+           <WrappingButton theme={theme} onClick={handleOpen}>
                 <AddIcon/>
            </WrappingButton>)
 };

@@ -50,13 +50,13 @@ const ProductList = () => {
     );
   });
 
-  if (isLoading) {
-    return (
-      <div className={classes.center}>
-        <CircularProgress />
-      </div>
-    );
-  }
+    if (isLoading) {
+        return (
+            <div className={classes.center}>
+                <CircularProgress />
+            </div>
+        );
+    }
 
   if (error) {
     return (
