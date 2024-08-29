@@ -14,14 +14,14 @@ export const getClasses = (theme: Theme) => ({
   }),
   searchInput: css({
     flex: 1,
-    maxWidth: 750,
+    maxWidth: 700,
     marginRight: theme.spacing(2),
   }),
   dropdown: css({
     marginLeft: theme.spacing(2),
     minWidth: 200, // Set a smaller minWidth
     width: "30%", // Adjust the width to your preference
-    maxWidth: 400, // Optional: Set a maximum width
+    maxWidth: 450, // Optional: Set a maximum width
   }),
   productList: css({
     display: "flex",

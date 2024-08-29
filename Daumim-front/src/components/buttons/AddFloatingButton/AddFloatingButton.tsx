@@ -15,8 +15,8 @@ export const FloatingActionButton = () => {
 const WrappingButton = styled.button`
     position: fixed;
     border-radius: 100%;
-    width: 4rem;
-    height: 4rem;
+    width: 6rem;
+    height: 6rem;
     display: flex;
     align-items: center;
     justify-content: center;
