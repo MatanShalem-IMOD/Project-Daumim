@@ -10,7 +10,7 @@ import re
 app = Flask(__name__)
 
 CORS(app)
-
+print(1)
 # Load the configuration from config.py
 app.config.from_object(Config)
 
